@@ -81,7 +81,7 @@ FizzBuzz = fizz_buzz()
 print(FizzBuzz.solution(15))
 
 #Patters (n x n)
- class pattern1:
+class pattern1:
   def solution(self):
     for i in range(4):
       for j in range(4):
