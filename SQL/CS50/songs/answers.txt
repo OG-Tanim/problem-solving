@@ -1,0 +1,3 @@
+the person has mid level energy
+looking at the average of energy, danceability and valnece of the user's top 100 songs, i would like to infer that the user has an Energetic Aura to his/her music
+
