@@ -27,6 +27,6 @@ function asyncWrapperProm() {
 
 let a = asyncWrapperProm();
 a.then(function (data) {
-  //Whatever the Promise is resolving with gets passing down to .then() callback or can be used the as value directly by storing it in a vairable
+  //Whatever the Promise is resolving with gets passed down to .then() callback or can be used as the value directly by storing it in a variable
   countTill100(data);
 });

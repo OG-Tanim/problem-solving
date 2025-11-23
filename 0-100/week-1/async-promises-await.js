@@ -29,14 +29,14 @@ function asyncWrapperProm() {
 
 let a = asyncWrapperProm();
 console.log(a);
-a.then(function () {
+a.then(function (data) {
   //Whatever the Promise is resolving with gets passing down to .then() callback as data or can be used the as data directly by storing it in a vairable in async await
-  countTill100();
+  countTill100(data);
 });
 
 console.log("should print later");
 
-// HERE, in the callback we are having to passing callback funciton in the asyncwrapper funciton
+// HERE, in the callback we are having to pass a callback function to the asyncwrapper function
 function asyncFunciton(callback) {
   setTimeout(callback, 1000);
 }
