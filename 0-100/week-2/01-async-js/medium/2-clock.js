@@ -29,10 +29,16 @@ class AsyncCounter {
       if (format === 24) {
         console.log(`Time: ${hours}:${minutes}:${seconds}`);
       } else {
-        if (hours >= 12) {
-          console.log(`Time: ${hours - 12}:${minutes}:${seconds} PM`);
-        }
-        console.log(`Time: ${hours}:${minutes}:${seconds} AM`);
+        const hourNum = parseInt(hours, 10);
+        const period = hourNum >= 12 ? "PM" : "AM";
+        const displayHour =
+          hourNum === 0 ? 12 : hourNum > 12 ? hourNum - 12 : hourNum;
+        console.log(
+          `Time: ${String(displayHour).padStart(
+            2,
+            "0"
+          )}:${minutes}:${seconds} ${period}`
+        );
       }
     }, 1000);
   }
