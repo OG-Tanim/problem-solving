@@ -1,6 +1,7 @@
 const request = require('supertest');
 const assert = require('assert');
 const express = require('express');
+const { error } = require('console');
 
 const app = express();
 let errorCount = 0;
@@ -23,4 +24,14 @@ app.get('/errorCount', function(req, res) {
   res.status(200).json({ errorCount });
 });
 
+app.use(function(err, req, res, next) {
+  if (err) {
+    errorCount += 1;
+    return res.status(404).json({
+      msg: 'something went wrong'
+    })
+  } else {
+    next()
+  }
+})
 module.exports = app;

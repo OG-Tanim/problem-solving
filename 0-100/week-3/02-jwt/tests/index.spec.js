@@ -50,6 +50,7 @@ describe('verifyJwt', () => {
 		const token = jwt.sign({ username: 'kirat@gmail.com', password: '123456' }, "randomPassword");
 		const decoded = verifyJwt(token);
 		expect(decoded).toBe(false);
+		console.log(decoded);
 	});
 
 	test('decodes a jwt with same password correctly', () => {
