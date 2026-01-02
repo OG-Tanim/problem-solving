@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let tId;
+      function debouncedSum() {
+        clearTimeout(tId);
+        tId = setTimeout(() => {
+          sum();
+        }, 500);
+      }
+      async function sum() {
+        const a = document.getElementById("input1").value;
+        const b = document.getElementById("input2").value;
+
+        try {
+          const response = await fetch(
+            "http://localhost:8080/sum?a=" + a + "&b=" + b
+          );
+          const ans = await response.text();
+
+          document.getElementById("result").innerHTML = ans;
+        } catch (error) {
+          console.log(error);
+          res.send(error);
+        }
+      }
+    </script>
+    <input
+      oninput="debouncedSum()"
+      id="input1"
+      type="text"
+      placeholder="input 1st number"
+    />
+    <br />
+    <br />
+    <input
+      oninput="debouncedSum()"
+      id="input2"
+      type="text"
+      placeholder="input 2nd number"
+    />
+    <br />
+    <br />
+    <div id="result"></div>
+  </body>
+</html>
