@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let timeout;
+      function debounced() {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          populateSum();
+        }, 500);
+        //we have to clear it only if debouce gets called before the settimeout resolves
+      }
+      function populateSum() {
+        const a = parseInt(document.getElementById("number1").value);
+        const b = parseInt(document.getElementById("number2").value) || 0;
+        const element = document.getElementById("output");
+        element.innerHTML = a + b;
+      }
+    </script>
+    <input
+      oninput="debounced()"
+      id="number1"
+      type="text"
+      placeholder="input a number"
+    />
+    <br /><br />
+    <input
+      oninput="debounced()"
+      id="number2"
+      type="text"
+      placeholder="input a number"
+    />
+    <br /><br />
+
+    <div id="output"></div>
+  </body>
+</html>

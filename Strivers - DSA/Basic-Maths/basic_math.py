@@ -224,3 +224,7 @@ class problem8:
 
 p8 = problem8()
 p8.solution()
+
+# Decimal to HEX 
+def decToHex(n):
+  return hex(n)[2:]

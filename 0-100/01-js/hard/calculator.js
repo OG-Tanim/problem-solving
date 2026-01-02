@@ -49,7 +49,7 @@ class Calculator {
 
   validate(str) {
     str = str.split(" ").join("");
-    let regex = /^[0-9+\-*/()]+$/;
+    let regex = /^[0-9+\-*/()+]$/;
     if (!regex.test(str)) {
       throw new Error("input should only contain numbers and operators");
     }

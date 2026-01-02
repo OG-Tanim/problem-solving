@@ -20,11 +20,7 @@ function findIndexOf(str, target) {
 findIndexOf("Hello World", "World");
 
 // lastIndexOf
-function findLastIndexOf(str, target) {
-  console.log("Original String:", str);
-  console.log("Index:", str.lastIndexOf(target));
-}
-findLastIndexOf("Hello World World", "World");
+c;
 
 // slice
 function getSlice(str, start, end) {
