@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let globalId = 0;
+
+        function markDone(todoId) {
+            const todo = document.getElementById(todoId);
+            if (todo) {
+                todo.children[2].innerHTML = "Done";
+            }
+        }
+
+        function createChild(title, description, id) {
+
+            const parent = document.createElement("div");
+            
+            parent.setAttribute("id", `todo${id}`);
+
+            const childDiv = document.createElement("div");
+            childDiv.innerHTML = title;
+            
+            const childDiv2 = document.createElement("div");
+            childDiv2.innerHTML = description;
+
+            const childButton = document.createElement("button");
+            childButton.innerHTML="Mark as Done";
+            childButton.addEventListener('click', () => markDone(`todo${id}`));
+
+            parent.appendChild(childDiv);
+            parent.appendChild(childDiv2);
+            parent.appendChild(childButton);
+
+            return parent;
+
+        }
+
+        function addTodo() {
+            const title = document.getElementById("title").value;
+            const description = document.getElementById("description").value;
+            const child = createChild(title, description, globalId++);   
+            
+            document.getElementById("container").appendChild(child);
+            
+            
+            // parent.innerHTML = 
+            // `<div>${title}</div>
+            // <div>${description}</div>
+            // <button>mark as done</button><br></br>`
+            
+        }
+    </script>
+
+    <input id="title" type="text" placeholder="title"><br></br>
+    <input id="description" type="text" placeholder="description"><br></br>
+    <button onclick="addTodo()">Add ToDo</button><br></br>
+    <div id="container"></div>
+
+    
+</body>
+</html>
