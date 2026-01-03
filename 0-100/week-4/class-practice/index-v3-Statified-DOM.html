@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="title" type="text" placeholder="title"><br></br>
+    <input id="description" type="text" placeholder="description"><br></br>
+    <div id="container"></div>
+</body>
+
+<script>
+
+        function createChild(title, description, id) {
+
+            const parent = document.createElement("div");
+            
+            parent.setAttribute("id", `todo${id}`);
+
+            const childDiv = document.createElement("div");
+            childDiv.innerHTML = title;
+            
+            const childDiv2 = document.createElement("div");
+            childDiv2.innerHTML = description;
+
+            const childButton = document.createElement("button");
+            childButton.innerHTML="Mark as Done";
+
+            parent.appendChild(childDiv);
+            parent.appendChild(childDiv2);
+            parent.appendChild(childButton);
+
+            return parent;
+
+        }
+
+        //state will always be a list
+        //state objects will have titles, description and id
+
+        const mockState = [
+            {       
+                title: "todo 1",
+                description: "this is todo 1",
+                id: 1
+            },
+            {
+                title: "todo 2",
+                description: "this is todo 2",
+                id: 2
+            },
+            {
+                title: "todo 3",
+                description: "this is todo 3",
+                id: 3
+            }
+        ];
+
+        function addTodo(state) {
+            document.getElementById("container").innerHTML = "";
+            for (let i = 0; i < state.length; i++) {
+                const child = createChild(state[i].title, state[i].description, state[i].id);
+
+                document.getElementById("container").appendChild(child);
+            }
+        }
+
+        window.setInterval(() => {
+            addTodo(mockState)
+        }, 1000);
+
+    </script>
+</html>

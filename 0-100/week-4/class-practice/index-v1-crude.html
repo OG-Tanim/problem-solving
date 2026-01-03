@@ -16,7 +16,9 @@
             <div>${description}</div>
             <button>mark as done</button><br></br>`
 
-            document.getElementById("todos").innerHTML = document.getElementById("todos").innerHTML + todo
+            const original = document.getElementById("todos").innerHTML;
+
+            document.getElementById("todos").innerHTML = original + todo
         }
     </script>
 
