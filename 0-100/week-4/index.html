@@ -7,16 +7,39 @@
     let todoState = [];
     let oldTodoState = [];
 
-    function addTodoToDom() {
-      
-    }
+    function addTodoToDom(todo) {
+      const parent = document.createElement("div");
+      parent.setAttribute("id", todo.id);
+
+      const child1 = document.createElement("div");
+      child1.innerHTML = todo.title;
+
+      const child2 = document.createElement("div");
+      child2.innerHTML = todo.description;
+
+      const child3 = document.createElement("button");
+      child3.innerHTML = "Mark as Done";
+
+      parent.appendChild(child1);
+      parent.appendChild(child2);
+      parent.appendChild(child3);
+
+      document.getElementById("todos").appendChild(parent);
+
+     }
 
     function removeTodoFromDom(todo) {
-      
+      const element = document.getElementById(todo.id);
+      if (element) {
+        element.remove();
+      }
     }
 
     function updateTodoInDom(oldTodo, newTodo) {
-        
+        const element = document.getElementById(oldTodo.id);
+        element.children[0].innerHTML = newTodo.title;
+        element.children[1].innerHTML = newTodo.description;
+        element.children[2].innerHTML = newTodo.completed ? "Mark as Done" : "Done";
     }
 
     function updateState(newTodos) {
@@ -28,9 +51,44 @@
       const added = [];
       const deleted = [];
       const updated = [];
+
+      //chack each element in new and old state using ids
+      for (const todo of newTodos) {
+        let oldTodo = oldTodoState.find(t => t.id === todo.id);
+
+        if (!oldTodo) {
+          added.push(todo);
+
+        } else {
+          if (JSON.stringify(oldTodo) !== JSON.stringify(todo)) {
+            updated.push({ oldTodo, newTodo: todo })
+          }
+        }
+
+      for (const todo of oldTodos) {
+        const exits = newTodos.find(t => t.id === todo.id);
+
+        if (!exists) {
+          deleted.push(todo);
+        }
+      }
+      }
       // calculate these 3 arrays
       // call addTodo, removeTodo, updateTodo functions on each of the
       // elements
+
+      added.forEach(element => {
+        addTodoToDom(element)
+      });
+
+      deleted.forEach(element => {
+        removeTodoFromDom(element);
+      });
+
+      updated.forEach(element => {
+        updateTodoInDom(element.oldTodo, element.newTodo);
+      });
+
       oldTodoState = newTodos;
     }
 
