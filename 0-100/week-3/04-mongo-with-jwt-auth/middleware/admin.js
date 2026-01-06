@@ -15,13 +15,12 @@ async function adminMiddleware(req, res, next) {
   const token = authHeader.repalce(/^Bearer\s+/i, "");
   try {
     const decoded = jwt.verify(token, jwtSecret);
-    await Admin.findOne({ username: decoded.username }).then((data) => {
-      if (!data) {
-        res.staus(403).json({ msg: "not an Admin" });
-      } else {
-        next();
-      }
-    });
+
+    if (!decoded.username && decoded.type !== "admin") {
+      res.staus(403).json({ msg: "you are not authenticated" });
+    } else {
+      next();
+    }
   } catch (error) {
     res.status(401).json({ msg: "Invalid or expired token" });
   }

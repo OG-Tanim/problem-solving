@@ -42,7 +42,7 @@ router.post("/signin", async (req, res) => {
       return res.json(404).json({ msg: "User does not exist " });
     }
 
-    const token = jwt.sign(username, jwtSecret);
+    const token = jwt.sign({ username, type: user }, jwtSecret);
     return res.status(200).json({ token: token });
   } catch (error) {
     res.status(500).json({ msg: "Internal Server Error" });

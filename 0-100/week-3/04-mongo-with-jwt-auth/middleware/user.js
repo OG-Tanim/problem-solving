@@ -13,6 +13,9 @@ function userMiddleware(req, res, next) {
   const token = authHeader.repalce(/^Bearer\s+/i, "");
   try {
     const decoded = jwt.verify(token, jwtSecret);
+    if (!decoded.username && decoded.type !== "user") {
+      res.status(403).json({ msg: "you are not authenticated" });
+    }
     req.user = decoded;
     next();
   } catch (error) {
