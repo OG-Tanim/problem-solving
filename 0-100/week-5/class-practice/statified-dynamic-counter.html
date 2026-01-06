@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container"></div>
+  </body>
+
+  <script>
+    //State
+    let State = {
+      count: 0,
+    };
+
+    function updateComponent() {
+      State.count++;
+      buttonComponentReRenderer(State);
+    }
+
+    //Re-renderer
+    function buttonComponentReRenderer(obj) {
+      document.getElementById("container").innerHTML = "";
+      const button = buttonComponent(obj.count);
+      document.getElementById("container").appendChild(button);
+    }
+
+    //component
+    function buttonComponent(count) {
+      const component = document.createElement("button");
+      component.setAttribute("onclick", "updateComponent()");
+      component.setAttribute("id", "btn");
+      component.innerHTML = `Counter ${count}`;
+
+      return component;
+    }
+    buttonComponentReRenderer(State);
+  </script>
+</html>
