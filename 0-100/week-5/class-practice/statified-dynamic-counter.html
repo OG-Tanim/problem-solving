@@ -12,22 +12,24 @@
   <script>
     //State
     let State = {
+      // const [state, rerenderer] = useState(0): setting initial state to 0
       count: 0,
     };
 
+    //hooking the state up with the rerenderer
     function updateComponent() {
-      State.count++;
-      buttonComponentReRenderer(State);
+      State.count++; //stateUpdate
+      buttonComponentReRenderer(State); //onTrigger: rerenderer(updated-{state})
     }
 
-    //Re-renderer
+    //Re-renderer : REACT DOM handles this Part
     function buttonComponentReRenderer(obj) {
       document.getElementById("container").innerHTML = "";
       const button = buttonComponent(obj.count);
       document.getElementById("container").appendChild(button);
     }
 
-    //component
+    //component: create a function that returns the component(that returns XML element) and pass in args like state and rerenderer(for the updation logic) as attributes of the component
     function buttonComponent(count) {
       const component = document.createElement("button");
       component.setAttribute("onclick", "updateComponent()");
@@ -36,6 +38,7 @@
 
       return component;
     }
-    buttonComponentReRenderer(State);
+
+    buttonComponentReRenderer(State); //The Re-renderer takes the State as arg
   </script>
 </html>
