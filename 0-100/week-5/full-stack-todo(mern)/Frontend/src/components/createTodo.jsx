@@ -1,7 +1,8 @@
-import { use, useState } from "react";
+import { useState } from "react";
 
 export function CreateTodo() {
   const [input, setInput] = useState({});
+  console.log(input);
 
   function newTodo() {
     fetch("http://localhost:3000/todos", {
@@ -11,7 +12,7 @@ export function CreateTodo() {
         description: input.description,
       }),
       headers: {
-        "content-type": "application/json",
+        "Content-type": "application/json",
       },
     }).then(() => {
       alert("New todo created");
@@ -24,7 +25,7 @@ export function CreateTodo() {
         type="text"
         placeholder="please input a title"
         onChange={(e) => {
-          setInput({ title: e.target.value });
+          setInput({ ...input, title: e.target.value });
         }}
       />
       <br />
@@ -33,7 +34,7 @@ export function CreateTodo() {
         type="text"
         placeholder="please input a description"
         onChange={(e) => {
-          setInput({ description: e.target.value });
+          setInput({ ...input, description: e.target.value });
         }}
       />
       <br />
