@@ -49,7 +49,7 @@ function App() {
 function Todo({ id }) {
   const [todo, setTodo] = useState({});
 
-  useasyncEffect(() => {
+  useEffect(() => {
     axios.get("https://100xdevs.co.in?id" + { id }).then((response) => {
       setTodo(response.data.todo);
     });
